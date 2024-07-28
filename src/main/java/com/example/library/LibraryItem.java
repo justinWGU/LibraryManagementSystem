@@ -1,16 +1,16 @@
 package com.example.library;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public abstract class LibraryItem {
     // fields
     private String title;
-    private Date publicationDate;
+    private LocalDate publicationDate;
     private String genre;
     private int quantity;
 
     // constructor
-    public LibraryItem(String title, Date publicationDate, String genre, int quantity) {
+    public LibraryItem(String title, LocalDate publicationDate, String genre, int quantity) {
         this.title = title;
         this.publicationDate = publicationDate;
         this.genre = genre;
@@ -24,7 +24,7 @@ public abstract class LibraryItem {
         return title;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return publicationDate;
     }
 
@@ -32,11 +32,11 @@ public abstract class LibraryItem {
         this.title = title;
     }
 
-    public Date getPublicationDate() {
+    public LocalDate getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Date publicationDate) {
+    public void setPublicationDate(LocalDate publicationDate) {
         this.publicationDate = publicationDate;
     }
 
