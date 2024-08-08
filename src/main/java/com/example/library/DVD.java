@@ -1,4 +1,37 @@
 package com.example.library;
 
-public class DVD {
+import java.time.LocalDate;
+
+public class DVD extends LibraryItem {
+
+    // fields
+    private String director;
+    private double duration;
+
+    // constructors
+    public DVD(String director, double duration, String title, LocalDate publicationDate, String genre, int quantity) {
+        super(title, publicationDate, genre, quantity);
+        this.director = director;
+        this.duration = duration;
+    }
+    // methods
+    @Override
+    public void displayInfo() {
+        System.out.println("Title: " + getTitle()+  "Director: " +  director + "Genre: " + getGenre());
+    }
+    // setters
+    public void setDirector(String director) {
+        this.director = director;
+    }
+    public void setDuration(double duration) {
+        this.duration = duration;
+    }
+
+    // getters
+    public String getDirector() {
+        return director;
+    }
+    public double getDuration() {
+        return duration;
+    }
 }
