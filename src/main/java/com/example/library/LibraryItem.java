@@ -1,6 +1,7 @@
 package com.example.library;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public abstract class LibraryItem {
     // fields
@@ -8,6 +9,7 @@ public abstract class LibraryItem {
     private LocalDate publicationDate;
     private String genre;
     private int quantity;
+    private final String id;
 
     // constructor
     public LibraryItem(String title, LocalDate publicationDate, String genre, int quantity) {
@@ -15,9 +17,23 @@ public abstract class LibraryItem {
         this.publicationDate = publicationDate;
         this.genre = genre;
         this.quantity = quantity;
+        this.id = UUID.randomUUID().toString();
     }
 
-    // abstract function
+    // borrow & return functions
+    public boolean borrowItem() {
+        if (quantity > 0) {
+            quantity--;
+            return true;
+        }
+        return false;
+    }
+    public boolean returnItem() {
+        quantity++;
+        return true;
+    }
+
+    // abstract functions
     public abstract void displayInfo();
 
     public String getTitle() {
@@ -36,6 +52,7 @@ public abstract class LibraryItem {
         return publicationDate;
     }
 
+    // setters
     public void setPublicationDate(LocalDate publicationDate) {
         this.publicationDate = publicationDate;
     }
@@ -54,5 +71,9 @@ public abstract class LibraryItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getId() {
+        return id;
     }
 }
