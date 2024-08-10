@@ -25,7 +25,7 @@ public class Library {
         return null;
     }
 
-    public Member findMemberByID(int ID) {
+    public Member findMemberByID(String ID) {
         for (Member member: members) {
             if (member.getNumberID() == ID) {
                 return member;

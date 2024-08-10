@@ -3,26 +3,25 @@ package com.example.library;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class Member {
 
     // priv fields
     private HashMap<String, Integer> borrowedItems;
     private String name;
-    private int numberID;
+    private String numberID;
     private String email;
-    private int itemQuantity;
 
     // constructors
-    public Member(String name, int numberID, String email) {
+    public Member(String name, String email) {
         this.name = name;
-        this.numberID = numberID;
         this.email = email;
         borrowedItems = new HashMap<>();
     }
     public Member() {
         name = "";
-        numberID = 0;
+        this.numberID = UUID.randomUUID().toString();
         email = "";
         borrowedItems = new HashMap<>();
     }
@@ -58,7 +57,7 @@ public class Member {
         return name;
     }
 
-    public int getNumberID() {
+    public String getNumberID() {
         return numberID;
     }
 
@@ -76,7 +75,7 @@ public class Member {
         this.name = name;
     }
 
-    public void setNumberID(int numberID) {
+    public void setNumberID(String numberID) {
         this.numberID = numberID;
     }
 
