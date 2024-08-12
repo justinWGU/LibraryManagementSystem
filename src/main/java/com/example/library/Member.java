@@ -49,8 +49,8 @@ public class Member {
     }
 
     // getters
-    public HashMap<String, Integer> getBorrowedItems() {
-        return borrowedItems;
+    public void getBorrowedItems() {
+        System.out.println("Items currently in your list: ");
     }
 
     public String getName() {

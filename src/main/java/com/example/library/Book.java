@@ -1,7 +1,6 @@
 package com.example.library;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Book extends LibraryItem {
 
@@ -18,7 +17,7 @@ public class Book extends LibraryItem {
 
     @Override
     public void displayInfo() {
-        System.out.println("Title: " + getTitle() + "Author: " + author + "Genre: " + getGenre());
+        System.out.println("Title: " + getTitle() + " Author: " + author + " Genre: " + getGenre());
     }
 
     public long getISBN() {

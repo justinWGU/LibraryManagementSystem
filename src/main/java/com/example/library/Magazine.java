@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public class Magazine extends LibraryItem {
 
-    private int ISSN;
+    private long ISSN;
     private int issueNum;
     private String editor;
 
     // constructors
-    public Magazine(int ISSN, int issueNum, String editor, String title, LocalDate publicationDate, String genre, int quantity) {
+    public Magazine(long ISSN, int issueNum, String editor, String title, LocalDate publicationDate, String genre, int quantity) {
         super(title, publicationDate, genre, quantity);
         this.ISSN = ISSN;
         this.issueNum = issueNum;
@@ -17,7 +17,7 @@ public class Magazine extends LibraryItem {
     }
 
     // getters
-    public int getISSN() {
+    public long getISSN() {
         return ISSN;
     }
 
@@ -30,7 +30,7 @@ public class Magazine extends LibraryItem {
     }
 
     // setters
-    public void setISSN(int ISSN) {
+    public void setISSN(long ISSN) {
         this.ISSN = ISSN;
     }
 
@@ -44,6 +44,6 @@ public class Magazine extends LibraryItem {
 
     @Override
     public void displayInfo() {
-        System.out.println("");
+        System.out.println("Title: " + getTitle() + " Editor: " + editor + " Issue number: " + ISSN);
     }
 }
