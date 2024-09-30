@@ -44,6 +44,9 @@ public class Magazine extends LibraryItem {
 
     @Override
     public void displayInfo() {
-        System.out.println("Title: " + getTitle() + " Editor: " + editor + " Issue number: " + ISSN);
+        System.out.println("Editor: " + editor);
+        System.out.println("ISSN: " + ISSN);
+        System.out.println("Issue Number: " + ISSN);
+        super.displayInfo();
     }
 }

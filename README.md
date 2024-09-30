@@ -51,7 +51,6 @@ Add Book -> Title: Clean Code, Author: Robert C. Martin
 - Maven
 - IntelliJ
 - Git
-- IntelliJ
 
 ## License
 

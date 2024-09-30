@@ -34,7 +34,12 @@ public abstract class LibraryItem {
     }
 
     // abstract functions
-    public abstract void displayInfo();
+    public void displayInfo() {
+        System.out.println("Title: " + title);
+        System.out.println("Genre: " + genre);
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Publication date: " + publicationDate);
+    }
 
     public String getTitle() {
         return title;

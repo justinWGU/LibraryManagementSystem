@@ -23,5 +23,6 @@ public class BookTest {
         assertEquals("Fiction", book.getGenre(), "Should be Fiction");
         assertEquals(5, book.getQuantity(), "Should be 5");
 
+        // test display info function is properly overridden
     }
 }

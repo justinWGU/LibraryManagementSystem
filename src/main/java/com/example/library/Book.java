@@ -17,7 +17,10 @@ public class Book extends LibraryItem {
 
     @Override
     public void displayInfo() {
-        System.out.println("Title: " + getTitle() + " Author: " + author + " Genre: " + getGenre());
+        System.out.println("Author: " + author);
+        System.out.println("ISBN: " + ISBN);
+        super.displayInfo();
+        System.out.println("Number of pages: " + numPages);
     }
 
     public long getISBN() {

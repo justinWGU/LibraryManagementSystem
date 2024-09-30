@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class LibraryCLI {
 
-    private Library library;
-    private Scanner scnr;
+    private final Library library;
+    private final Scanner scnr;
 
     // DI Library for when Library creates an instance of this class
     public LibraryCLI(Library library) {
@@ -14,7 +14,7 @@ public class LibraryCLI {
         scnr = new Scanner(System.in);
     }
 
-    // method to display Menu Options
+    // Display menu Options
     public void start() {
 
         Magazine magazine1 = new Magazine(123456, 202, "John Doe", "Tech Today", LocalDate.of(2024, 8, 1), "Technology", 20);
@@ -145,6 +145,19 @@ public class LibraryCLI {
 
         // add book to library
         library.addItem(item);
+//        Book book = new Book(
+//                9780134685991L,                  // ISBN
+//                850,                             // Number of pages
+//                "Joshua Bloch",                   // Author
+//                "Effective Java",                 // Title
+//                LocalDate.of(2018, 1, 6),         // Publication date
+//                "Programming",                    // Genre
+//                10                                // Quantity in stock
+//        );
+
+        System.out.println("Successfully added book with the following details: ");
+        //book.displayInfo();
+        item.displayInfo();
     }
 
     public void addMagazine() {

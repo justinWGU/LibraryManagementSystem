@@ -17,7 +17,9 @@ public class DVD extends LibraryItem {
     // methods
     @Override
     public void displayInfo() {
-        System.out.println("Title: " + getTitle()+  " Director: " +  director + " Genre: " + getGenre());
+        System.out.println("Director: " + director);
+        System.out.println("Duration: " + duration);
+        super.displayInfo();
     }
     // setters
     public void setDirector(String director) {

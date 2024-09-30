@@ -7,6 +7,8 @@ public class LibraryManager {
         // lib class to inject into lib cli
         Library lib = new Library();
 
+        // call bootstrap method
+
         // UI class
         LibraryCLI libraryCLI = new LibraryCLI(lib);
 
