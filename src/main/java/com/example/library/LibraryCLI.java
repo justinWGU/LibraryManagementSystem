@@ -17,46 +17,23 @@ public class LibraryCLI {
     // Display menu Options
     public void start() {
 
-        Magazine magazine1 = new Magazine(123456, 202, "John Doe", "Tech Today", LocalDate.of(2024, 8, 1), "Technology", 20);
-        Magazine magazine2 = new Magazine(789012, 103, "Jane Smith", "Fashion Weekly", LocalDate.of(2024, 7, 15), "Fashion", 15);
-        Magazine magazine3 = new Magazine(345678, 215, "Alice Johnson", "Home & Garden", LocalDate.of(2024, 6, 10), "Lifestyle", 12);
-        Magazine magazine4 = new Magazine(901234, 322, "Robert Brown", "Sports Monthly", LocalDate.of(2024, 8, 20), "Sports", 18);
-        Magazine magazine5 = new Magazine(567890, 411, "Emily Davis", "Travel Explorer", LocalDate.of(2024, 5, 25), "Travel", 10);
-        library.addItem(magazine1);
-        library.addItem(magazine2);
-        library.addItem(magazine3);
-        library.addItem(magazine4);
-        library.addItem(magazine5);
-        DVD dvd1 = new DVD("Steven Spielberg", 120.5, "Jurassic Park", LocalDate.of(1993, 6, 11), "Adventure", 10);
-        DVD dvd2 = new DVD("James Cameron", 137.0, "Titanic", LocalDate.of(1997, 12, 19), "Romance", 8);
-        DVD dvd3 = new DVD("Christopher Nolan", 148.0, "Inception", LocalDate.of(2010, 7, 16), "Sci-Fi", 12);
-        DVD dvd4 = new DVD("Ridley Scott", 117.0, "Gladiator", LocalDate.of(2000, 5, 5), "Action", 7);
-        DVD dvd5 = new DVD("Peter Jackson", 201.0, "The Lord of the Rings: The Return of the King", LocalDate.of(2003, 12, 17), "Fantasy", 15);
-        library.addItem(dvd1);
-        library.addItem(dvd2);
-        library.addItem(dvd3);
-        library.addItem(dvd4);
-        library.addItem(dvd5);
-        Book book1 = new Book(9780451524935L, 328, "George Orwell", "1984", LocalDate.of(1949, 6, 8), "Dystopian", 5);
-        Book book2 = new Book(9780061120084L, 336, "Harper Lee", "To Kill a Mockingbird", LocalDate.of(1960, 7, 11), "Fiction", 3);
-        Book book3 = new Book(9780743273565L, 180, "F. Scott Fitzgerald", "The Great Gatsby", LocalDate.of(1925, 4, 10), "Classic", 7);
-        Book book4 = new Book(9781503280786L, 720, "Herman Melville", "Moby Dick", LocalDate.of(1851, 11, 14), "Adventure", 4);
-        Book book5 = new Book(9781503290563L, 279, "Jane Austen", "Pride and Prejudice", LocalDate.of(1813, 1, 28), "Romance", 6);
-        library.addItem(book1);
-        library.addItem(book2);
-        library.addItem(book3);
-        library.addItem(book4);
-        library.addItem(book5);
-        Member member1 = new Member("Alice Johnson", "alice@example.com");
-        Member member2 = new Member("Bob Smith", "bob@example.com");
-        Member member3 = new Member("Charlie Davis", "charlie@example.com");
-        Member member4 = new Member("Diana Evans", "diana@example.com");
-        Member member5 = new Member("Evan Green", "evan@example.com");
-        library.addMember(member1);
-        library.addMember(member2);
-        library.addMember(member3);
-        library.addMember(member4);
-        library.addMember(member5);
+        // call bootstrap data
+        bootStrap();
+
+        // call appropriate prompt method
+        System.out.println("Enter your role: (Admin or Member)");
+        String role = scnr.next();
+        if (role.equalsIgnoreCase("ADMIN")) {
+            // call admin prompt
+            adminPrompt();
+        }
+        else if (role.equalsIgnoreCase("MEMBER")) {
+            // call mem prompt
+            memberPrompt();
+        }
+        else {
+            System.out.println("Incorrect response.");
+        }
 
         // continue displaying options until exited
         boolean running = true;
@@ -115,7 +92,7 @@ public class LibraryCLI {
         }
     }
 
-    public void addBook() {
+    private void addBook() {
 
         System.out.println("Enter book's ISBN: ");
         long isbn = scnr.nextLong();
@@ -160,7 +137,7 @@ public class LibraryCLI {
         item.displayInfo();
     }
 
-    public void addMagazine() {
+    private void addMagazine() {
 
         System.out.println("Enter Magazine's ISSN: ");
         long issn = scnr.nextLong();
@@ -191,7 +168,7 @@ public class LibraryCLI {
         library.addItem(magazine);
     }
 
-    public void addDVD() {
+    private void addDVD() {
 
         // String director, double duration, String title, LocalDate publicationDate, String genre, int quantity
         System.out.println("Enter DVD's directory: ");
@@ -218,7 +195,7 @@ public class LibraryCLI {
         library.addItem(dvd);
     }
 
-    public void addMember() {
+    private void addMember() {
 
         System.out.println("Enter member name: ");
         String name = scnr.nextLine();
@@ -228,33 +205,88 @@ public class LibraryCLI {
 
         // create member
         Member member = new Member(name, email);
+
         // add member to library
         library.addMember(member);
     }
 
-    public void viewInventory() {
+    private void viewInventory() {
         System.out.println(library.getName() + "'s inventory: ");
         library.viewAllItems();
     }
 
-    public void searchByTitle() {
+    private void searchByTitle() {
         System.out.println("Enter title: ");
         String title = scnr.nextLine();
         library.findItemByTitle(title);
     }
 
-    public void searchMemberByID() {
+    private void searchMemberByID() {
         System.out.println("Enter Member's id: ");
         String id = scnr.nextLine();
         library.findMemberByID(id);
     }
 
-
-    public void searchBookByISBN() {
+    private void searchBookByISBN() {
 
     }
 
-    public void searchMagazineByISSN() {
+    private void searchMagazineByISSN() {
 
+    }
+
+    // bootstrap data
+    private void bootStrap() {
+
+        // add magazines
+        Magazine magazine1 = new Magazine(123456, 202, "John Doe", "Tech Today", LocalDate.of(2024, 8, 1), "Technology", 20);
+        Magazine magazine2 = new Magazine(789012, 103, "Jane Smith", "Fashion Weekly", LocalDate.of(2024, 7, 15), "Fashion", 15);
+        Magazine magazine3 = new Magazine(345678, 215, "Alice Johnson", "Home & Garden", LocalDate.of(2024, 6, 10), "Lifestyle", 12);
+        Magazine magazine4 = new Magazine(901234, 322, "Robert Brown", "Sports Monthly", LocalDate.of(2024, 8, 20), "Sports", 18);
+        Magazine magazine5 = new Magazine(567890, 411, "Emily Davis", "Travel Explorer", LocalDate.of(2024, 5, 25), "Travel", 10);
+        library.addItem(magazine1);
+        library.addItem(magazine2);
+        library.addItem(magazine3);
+        library.addItem(magazine4);
+        library.addItem(magazine5);
+
+        // add dvds
+        DVD dvd1 = new DVD("Steven Spielberg", 120.5, "Jurassic Park", LocalDate.of(1993, 6, 11), "Adventure", 10);
+        DVD dvd2 = new DVD("James Cameron", 137.0, "Titanic", LocalDate.of(1997, 12, 19), "Romance", 8);
+        DVD dvd3 = new DVD("Christopher Nolan", 148.0, "Inception", LocalDate.of(2010, 7, 16), "Sci-Fi", 12);
+        DVD dvd4 = new DVD("Ridley Scott", 117.0, "Gladiator", LocalDate.of(2000, 5, 5), "Action", 7);
+        DVD dvd5 = new DVD("Peter Jackson", 201.0, "The Lord of the Rings: The Return of the King", LocalDate.of(2003, 12, 17), "Fantasy", 15);
+        library.addItem(dvd1);
+        library.addItem(dvd2);
+        library.addItem(dvd3);
+        library.addItem(dvd4);
+        library.addItem(dvd5);
+
+        // add books
+        Book book1 = new Book(9780451524935L, 328, "George Orwell", "1984", LocalDate.of(1949, 6, 8), "Dystopian", 5);
+        Book book2 = new Book(9780061120084L, 336, "Harper Lee", "To Kill a Mockingbird", LocalDate.of(1960, 7, 11), "Fiction", 3);
+        Book book3 = new Book(9780743273565L, 180, "F. Scott Fitzgerald", "The Great Gatsby", LocalDate.of(1925, 4, 10), "Classic", 7);
+        Book book4 = new Book(9781503280786L, 720, "Herman Melville", "Moby Dick", LocalDate.of(1851, 11, 14), "Adventure", 4);
+        Book book5 = new Book(9781503290563L, 279, "Jane Austen", "Pride and Prejudice", LocalDate.of(1813, 1, 28), "Romance", 6);
+        library.addItem(book1);
+        library.addItem(book2);
+        library.addItem(book3);
+        library.addItem(book4);
+        library.addItem(book5);
+
+        // add mems
+        Member member1 = new Member("Alice Johnson", "alice@example.com");
+        Member member2 = new Member("Bob Smith", "bob@example.com");
+        Member member3 = new Member("Charlie Davis", "charlie@example.com");
+        Member member4 = new Member("Diana Evans", "diana@example.com");
+        Member member5 = new Member("Evan Green", "evan@example.com");
+        library.addMember(member1);
+        library.addMember(member2);
+        library.addMember(member3);
+        library.addMember(member4);
+        library.addMember(member5);
+
+        // confirm method works
+        System.out.println("Bootstrap method works!");
     }
 }
