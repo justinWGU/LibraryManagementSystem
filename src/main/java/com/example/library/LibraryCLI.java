@@ -34,6 +34,12 @@ public class LibraryCLI {
         else {
             System.out.println("Incorrect response.");
         }
+    }
+
+    private void adminPrompt() {
+
+        // method test print statement
+        System.out.println("Adin prompt works!");
 
         // continue displaying options until exited
         boolean running = true;
@@ -48,6 +54,63 @@ public class LibraryCLI {
             System.out.println("7. Search for Book by ISBN");
             System.out.println("8. Search for Magazine by ISSN");
             System.out.println("9. Search for Member by ID");
+            System.out.println("0. EXIT");
+
+            int input = scnr.nextInt();
+            scnr.nextLine();
+
+            // switch case to handle user input
+            switch (input) {
+                case 1:
+                    addBook();
+                    break;
+                case 2:
+                    addMagazine();
+                    break;
+                case 3:
+                    addDVD();
+                    break;
+                case 4:
+                    addMember();
+                    break;
+                case 5:
+                    viewInventory();
+                    break;
+                case 6:
+                    searchByTitle();
+                    break;
+                case 7:
+                    searchBookByISBN();
+                    break;
+                case 8:
+                    searchMagazineByISSN();
+                    break;
+                case 9:
+                    searchMemberByID();
+                    break;
+                case 0:
+                    System.out.println("EXITED");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid input. Please enter one of the following options:");
+            }
+        }
+    }
+
+    private void memberPrompt() {
+
+        // method test print statement
+        System.out.println("Member prompt works!");
+
+        // continue displaying options until exited
+        boolean running = true;
+        while(running) {
+            System.out.println("Please choose from the following options: ");
+            System.out.println("1. Manage Profile");
+            System.out.println("2. View Borrowed Items");
+            System.out.println("3. Return items");
+            System.out.println("4. Search items");
             System.out.println("0. EXIT");
 
             int input = scnr.nextInt();
