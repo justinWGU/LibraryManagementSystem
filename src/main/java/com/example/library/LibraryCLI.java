@@ -1,12 +1,15 @@
 package com.example.library;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class LibraryCLI {
 
     private final Library library;
     private final Scanner scnr;
+    private Member member;
 
     // DI Library for when Library creates an instance of this class
     public LibraryCLI(Library library) {
@@ -21,7 +24,7 @@ public class LibraryCLI {
         bootStrap();
 
         // call appropriate prompt method
-        System.out.println("Enter your role: (Admin or Member)");
+        System.out.println("Enter your role (Admin or Member): ");
         String role = scnr.next();
         if (role.equalsIgnoreCase("ADMIN")) {
             // call admin prompt
@@ -80,12 +83,6 @@ public class LibraryCLI {
                     searchByTitle();
                     break;
                 case 7:
-                    searchBookByISBN();
-                    break;
-                case 8:
-                    searchMagazineByISSN();
-                    break;
-                case 9:
                     searchMemberByID();
                     break;
                 case 0:
@@ -98,10 +95,13 @@ public class LibraryCLI {
         }
     }
 
+    // Method needs to be implemented for member user
     private void memberPrompt() {
 
+        member = new Member();
+
         // method test print statement
-        System.out.println("Member prompt works!");
+        System.out.println("Member Function in Development!");
 
         // continue displaying options until exited
         boolean running = true;
@@ -118,33 +118,6 @@ public class LibraryCLI {
 
             // switch case to handle user input
             switch (input) {
-                case 1:
-                    addBook();
-                    break;
-                case 2:
-                    addMagazine();
-                    break;
-                case 3:
-                    addDVD();
-                    break;
-                case 4:
-                    addMember();
-                    break;
-                case 5:
-                    viewInventory();
-                    break;
-                case 6:
-                    searchByTitle();
-                    break;
-                case 7:
-                    searchBookByISBN();
-                    break;
-                case 8:
-                    searchMagazineByISSN();
-                    break;
-                case 9:
-                    searchMemberByID();
-                    break;
                 case 0:
                     System.out.println("EXITED");
                     running = false;
@@ -185,15 +158,6 @@ public class LibraryCLI {
 
         // add book to library
         library.addItem(item);
-//        Book book = new Book(
-//                9780134685991L,                  // ISBN
-//                850,                             // Number of pages
-//                "Joshua Bloch",                   // Author
-//                "Effective Java",                 // Title
-//                LocalDate.of(2018, 1, 6),         // Publication date
-//                "Programming",                    // Genre
-//                10                                // Quantity in stock
-//        );
 
         System.out.println("Successfully added book with the following details: ");
         //book.displayInfo();
@@ -229,19 +193,22 @@ public class LibraryCLI {
         LibraryItem magazine = new Magazine(issn, issueNum, editor, title, pubDate, genre, quantity);
         // add magazine to library
         library.addItem(magazine);
+
+        System.out.println("Successfully added magazine with the following details: ");
+        magazine.displayInfo();
     }
 
     private void addDVD() {
 
         // String director, double duration, String title, LocalDate publicationDate, String genre, int quantity
-        System.out.println("Enter DVD's directory: ");
+        System.out.println("Enter Director of DVD: ");
         String director = scnr.nextLine();
 
         System.out.println("Enter title: ");
         String title = scnr.nextLine();
 
-        System.out.println("Enter DVD duration: ");
-        double duration = scnr.nextDouble();
+        System.out.println("Enter DVD duration (HH:mm): ");
+        LocalTime duration = LocalTime.parse(scnr.nextLine(), DateTimeFormatter.ofPattern("HH:mm"));
 
         System.out.println("Enter publication date (yyyy-mm-dd): ");
         LocalDate pubDate = LocalDate.parse(scnr.nextLine()); // parse the date entered in parseable format
@@ -256,6 +223,9 @@ public class LibraryCLI {
         LibraryItem dvd = new DVD(director, duration, title, pubDate, genre, quantity);
         // add dvd to library
         library.addItem(dvd);
+
+        System.out.println("Successfully added DVD with the following details: ");
+        dvd.displayInfo();
     }
 
     private void addMember() {
@@ -271,10 +241,13 @@ public class LibraryCLI {
 
         // add member to library
         library.addMember(member);
+
+        System.out.println("Successfully added member with the following details: ");
+        member.print();
     }
 
     private void viewInventory() {
-        System.out.println(library.getName() + "'s inventory: ");
+        System.out.println(library.getName() + "'s inventory: \n" );
         library.viewAllItems();
     }
 
@@ -288,14 +261,6 @@ public class LibraryCLI {
         System.out.println("Enter Member's id: ");
         String id = scnr.nextLine();
         library.findMemberByID(id);
-    }
-
-    private void searchBookByISBN() {
-
-    }
-
-    private void searchMagazineByISSN() {
-
     }
 
     // bootstrap data
@@ -314,11 +279,11 @@ public class LibraryCLI {
         library.addItem(magazine5);
 
         // add dvds
-        DVD dvd1 = new DVD("Steven Spielberg", 120.5, "Jurassic Park", LocalDate.of(1993, 6, 11), "Adventure", 10);
-        DVD dvd2 = new DVD("James Cameron", 137.0, "Titanic", LocalDate.of(1997, 12, 19), "Romance", 8);
-        DVD dvd3 = new DVD("Christopher Nolan", 148.0, "Inception", LocalDate.of(2010, 7, 16), "Sci-Fi", 12);
-        DVD dvd4 = new DVD("Ridley Scott", 117.0, "Gladiator", LocalDate.of(2000, 5, 5), "Action", 7);
-        DVD dvd5 = new DVD("Peter Jackson", 201.0, "The Lord of the Rings: The Return of the King", LocalDate.of(2003, 12, 17), "Fantasy", 15);
+        DVD dvd1 = new DVD("Steven Spielberg", LocalTime.of(2, 0, 30), "Jurassic Park", LocalDate.of(1993, 6, 11), "Adventure", 10);
+        DVD dvd2 = new DVD("James Cameron", LocalTime.of(2, 17, 0), "Titanic", LocalDate.of(1997, 12, 19), "Romance", 8);
+        DVD dvd3 = new DVD("Christopher Nolan", LocalTime.of(2, 28, 0), "Inception", LocalDate.of(2010, 7, 16), "Sci-Fi", 12);
+        DVD dvd4 = new DVD("Ridley Scott", LocalTime.of(1, 57, 0), "Gladiator", LocalDate.of(2000, 5, 5), "Action", 7);
+        DVD dvd5 = new DVD("Peter Jackson", LocalTime.of(3, 21, 0), "The Lord of the Rings: The Return of the King", LocalDate.of(2003, 12, 17), "Fantasy", 15);
         library.addItem(dvd1);
         library.addItem(dvd2);
         library.addItem(dvd3);
@@ -348,8 +313,5 @@ public class LibraryCLI {
         library.addMember(member3);
         library.addMember(member4);
         library.addMember(member5);
-
-        // confirm method works
-        System.out.println("Bootstrap method works!");
     }
 }

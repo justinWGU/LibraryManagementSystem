@@ -48,5 +48,6 @@ public class Magazine extends LibraryItem {
         System.out.println("ISSN: " + ISSN);
         System.out.println("Issue Number: " + ISSN);
         super.displayInfo();
+        System.out.println();
     }
 }

@@ -82,4 +82,9 @@ public class Member {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void print() {
+        System.out.println("Name: " + name);
+        System.out.println("Email: " + email + "\n");
+    }
 }

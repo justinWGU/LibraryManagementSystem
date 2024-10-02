@@ -21,6 +21,7 @@ public class Book extends LibraryItem {
         System.out.println("ISBN: " + ISBN);
         super.displayInfo();
         System.out.println("Number of pages: " + numPages);
+        System.out.println();
     }
 
     public long getISBN() {

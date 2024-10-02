@@ -1,15 +1,16 @@
 package com.example.library;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class DVD extends LibraryItem {
 
     // fields
     private String director;
-    private double duration;
+    private LocalTime duration;
 
     // constructors
-    public DVD(String director, double duration, String title, LocalDate publicationDate, String genre, int quantity) {
+    public DVD(String director, LocalTime duration, String title, LocalDate publicationDate, String genre, int quantity) {
         super(title, publicationDate, genre, quantity);
         this.director = director;
         this.duration = duration;
@@ -20,12 +21,13 @@ public class DVD extends LibraryItem {
         System.out.println("Director: " + director);
         System.out.println("Duration: " + duration);
         super.displayInfo();
+        System.out.println();
     }
     // setters
     public void setDirector(String director) {
         this.director = director;
     }
-    public void setDuration(double duration) {
+    public void setDuration(LocalTime duration) {
         this.duration = duration;
     }
 
@@ -33,7 +35,7 @@ public class DVD extends LibraryItem {
     public String getDirector() {
         return director;
     }
-    public double getDuration() {
+    public LocalTime getDuration() {
         return duration;
     }
 }
